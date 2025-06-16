@@ -8,9 +8,9 @@ pipeline {
 
         stage('Ejecutar pruebas') {
             steps {
-                dir('ProyectoBaseSPCandidato') {
+               
                 bat("gradlew.bat clean test --tests \"com.co.choucair.runners.SerenityLoginRunner\" aggregate -Dwebdriver.driver=chrome")
-                }
+                
             }
         }
 
