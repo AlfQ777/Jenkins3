@@ -18,7 +18,7 @@ pipeline {
             steps {
                 publishHTML(target: [
                 reportName: 'Evidencias de Pruebas',
-                        reportDir: 'ProyectoBaseSPCandidato/target',
+                        reportDir: 'target',
                         reportFiles: 'index.html',
                         keepAll: true,
                         alwaysLinkToLastBuild: true,
@@ -29,8 +29,7 @@ pipeline {
     stage('Verificar salida') {
     steps {
         
-          bat("dir ProyectoBaseSPCandidato\\target\\index.html")
-          //bat("dir ProyectoBaseSPCandidato\\target\\site\\serenity")
+          bat("dir target\\index.html")
     }
     }
 
