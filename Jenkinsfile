@@ -8,7 +8,9 @@ pipeline {
 
         stage('Ejecutar pruebas') {
             steps {
-                bat("gradlew.bat clean test --tests \"net.serenitybdd.demo.zorro.runners.ZorroRunnerWithPreprocessing\" aggregate -Dwebdriver.driver=chrome || exit 0")
+                dir('ProyectoBaseSPCandidato') {
+                bat("gradlew.bat clean test --tests \"com.co.choucair.runners.SerenityLoginRunner\" aggregate -Dwebdriver.driver=chrome")
+                }
             }
         }
 
@@ -16,7 +18,7 @@ pipeline {
             steps {
                 publishHTML(target: [
                 reportName: 'Evidencias de Pruebas',
-                        reportDir: 'target/site/serenity',
+                        reportDir: 'ProyectoBaseSPCandidato/target',
                         reportFiles: 'index.html',
                         keepAll: true,
                         alwaysLinkToLastBuild: true,
@@ -24,6 +26,18 @@ pipeline {
                 ])
             }
         }
+    stage('Verificar salida') {
+    steps {
+        
+          bat("dir ProyectoBaseSPCandidato\\target\\index.html")
+          //bat("dir ProyectoBaseSPCandidato\\target\\site\\serenity")
+    }
+    }
+
+
+
+
+
     }
 
     post {
